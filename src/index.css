@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  background: #000;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============ 页面切换动画 ============ */
+@keyframes pageSlideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes pageSlideOut {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+.page-enter {
+  animation: pageSlideIn 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* ============ Toast ============ */
+@keyframes toastIn {
+  from { transform: translateY(-120%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes toastOut {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-120%); opacity: 0; }
+}
+
+.toast-enter {
+  animation: toastIn 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.toast-exit {
+  animation: toastOut 0.25s ease-in forwards;
+}
+
+/* ============ 收藏动效 ============ */
+@keyframes collectPop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.4); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+@keyframes starBurst {
+  0% { opacity: 1; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+  100% { opacity: 0; transform: scale(1.5) rotate(360deg); }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.collect-pop {
+  animation: collectPop 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.star-burst {
+  animation: starBurst 0.6s ease-out forwards;
+}
+
+.ripple-effect {
+  animation: ripple 0.6s ease-out forwards;
+}
+
+/* ============ 卡片动画 ============ */
+@keyframes cardSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cardRemove {
+  0% { opacity: 1; transform: translateX(0) scale(1); height: auto; margin-bottom: 12px; }
+  50% { opacity: 0; transform: translateX(60px) scale(0.9); }
+  100% { opacity: 0; transform: translateX(60px) scale(0.9); height: 0; margin-bottom: 0; padding: 0; overflow: hidden; }
+}
+
+@keyframes checkmark {
+  0% { transform: scale(0) rotate(-45deg); }
+  50% { transform: scale(1.2) rotate(0deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.card-enter {
+  animation: cardSlideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  opacity: 0;
+}
+
+.card-removing {
+  animation: cardRemove 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.checkmark-pop {
+  animation: checkmark 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* ============ 进度条 ============ */
+.progress-fill {
+  transition: width 0.8s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes progressGlow {
+  0% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0.5); }
+  70% { box-shadow: 0 0 8px 4px rgba(254, 44, 85, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(254, 44, 85, 0); }
+}
+
+.progress-glow {
+  animation: progressGlow 1s ease-out;
+}
+
+/* ============ 头像缩放 ============ */
+.avatar-shrink {
+  transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ============ 瀑布流加载 ============ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.feed-card-enter {
+  animation: fadeInUp 0.35s ease-out forwards;
+  opacity: 0;
+}
+
+/* ============ 底部弹起 ============ */
+@keyframes slideUpSheet {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.sheet-up {
+  animation: slideUpSheet 0.35s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* ============ 呼吸光效 ============ */
+@keyframes breathe {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.breathe {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+/* ============ 气泡提示动画 ============ */
+@keyframes bubbleIn {
+  0% { opacity: 0; transform: translateX(-50%) translateY(4px) scale(0.8); }
+  50% { transform: translateX(-50%) translateY(-2px) scale(1.02); }
+  100% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+@keyframes bubblePulse {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+  50% { transform: translateX(-50%) translateY(-2px) scale(1.02); }
+}
+
+.bubble-enter {
+  animation: bubbleIn 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards,
+             bubblePulse 2s ease-in-out 0.4s infinite;
+}
+
+/* ============ 无滚动条 ============ */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
