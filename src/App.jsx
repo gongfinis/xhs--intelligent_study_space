@@ -2,38 +2,6 @@ import { useState, useEffect, useRef, useMemo, useCallback, createContext, useCo
 import { FEED_DATA } from './data.js'
 import { analyzeNote, formatToastMessage, setApiKey, setBaseUrl, setModel, getConfigStatus } from './ai-service.js'
 import AIConfigPanel from './AIConfigPanel.jsx'
-import LandingPage from './LandingPage.jsx'
-
-// 路由管理
-function useRoute() {
-  const [currentPath, setCurrentPath] = useState(window.location.hash || '#/')
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setCurrentPath(window.location.hash)
-    }
-    window.addEventListener('hashchange', handleHashChange)
-    return () => window.removeEventListener('hashchange', handleHashChange)
-  }, [])
-
-  const navigate = (path) => {
-    window.location.hash = path
-  }
-
-  return { currentPath, navigate }
-}
-
-function App() {
-  const { currentPath, navigate } = useRoute()
-
-  // 如果在首页（或没有 hash），显示 Landing Page
-  if (currentPath === '#/' || currentPath === '' || currentPath === '#') {
-    return <LandingPage />
-  }
-
-  // 否则显示 Demo 应用
-  return <DemoApp navigate={navigate} />
-}
 
 // 将 AI 服务暴露到全局
 if (typeof window !== 'undefined') {
@@ -1298,8 +1266,8 @@ function LearnBoardExpanded({ items, onCollapse }) {
   )
 }
 
-// ==================== 主 Demo 应用 ====================
-function DemoApp({ navigate }) {
+// ==================== 主 App ====================
+export default function App() {
   const [currentPage, setCurrentPage] = useState('home')
   const [selectedNote, setSelectedNote] = useState(null)
   const [activeNav, setActiveNav] = useState('home')
